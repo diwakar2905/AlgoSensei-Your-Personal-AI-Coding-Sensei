@@ -7,6 +7,23 @@
 
 ### [➡️ Visit the Live Application ⬅️](https://algosensei-frontend.vercel.app/)
 
+<img width="1919" height="931" alt="image" src="https://github.com/user-attachments/assets/fa0ee55d-ed62-4e85-97eb-d1925fb232fc" />
+
+<img width="1919" height="940" alt="image" src="https://github.com/user-attachments/assets/e22070d6-cbc3-4d81-88ae-fdb63f69f383" />
+
+<img width="1919" height="943" alt="image" src="https://github.com/user-attachments/assets/e54db17c-b614-4996-99f3-2b9c5249094a" />
+
+<img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/38ce4b4c-e281-4fec-89a6-25bff0565a4c" />
+
+<img width="1919" height="932" alt="image" src="https://github.com/user-attachments/assets/ce9829f0-5799-47c4-bbd2-61f85476d004" />
+
+<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/7af5aa08-6012-4b0d-b056-cb084b5f0cbe" />
+
+<img width="1919" height="935" alt="image" src="https://github.com/user-attachments/assets/52505204-5e55-41cc-b79b-d0d32da0e7bb" />
+
+<img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/371caa44-63aa-4e4a-b8f3-129500934641" />
+
+<img width="1919" height="915" alt="image" src="https://github.com/user-attachments/assets/a9f7769b-1075-46fe-a4ec-0d24986faf8c" />
 
 
 ---
