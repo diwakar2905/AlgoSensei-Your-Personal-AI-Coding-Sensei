@@ -11,13 +11,17 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 # --- 1. Load Environment Variables ---
-# This line now specifically looks for your "python.env" file.
+# This is great for local development. On Render, environment variables
+# will be set in the dashboard, so load_dotenv() will be gracefully ignored.
 load_dotenv(dotenv_path='python.env')
 
 # --- Initialize your FastAPI app ---
 app = FastAPI()
 
 # --- Add CORS Middleware ---
+# In production, it's more secure to restrict this to your frontend's domain.
+# For example: allow_origins=["https://algosensei.onrender.com"]
+# Using ["*"] is fine for development but less secure for a live application.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
