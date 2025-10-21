@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSensei - Contact</title>
+    <link rel="icon" type="image/png" href="ALGO (2).png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* For custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #44475A;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #6272a4;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #ff79c6;
+        }
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#282a36',
+                            'bg-secondary': '#44475a',
+                            'accent': '#ff79c6',
+                            'accent-hover': '#ff92d4',
+                            'text-primary': '#f8f8f2',
+                            'text-secondary': '#bd93f9',
+                            'border': '#6272a4',
+                        },
+                        light: {
+                            bg: '#f8f9fa',
+                            'bg-secondary': '#ffffff',
+                            'accent': '#ff79c6',
+                            'accent-hover': '#ff50b3',
+                            'text-primary': '#212529',
+                            'text-secondary': '#495057',
+                            'border': '#dee2e6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text-primary dark:text-dark-text-primary transition-colors duration-300">
+
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header (Copied from index.html for consistency) -->
+        <header class="flex items-center justify-between px-3 py-0 border-b border-light-border dark:border-dark-border bg-light-bg-secondary/80 dark:bg-dark-bg/80 backdrop-blur-sm shadow-sm sticky top-0 z-30 w-full relative">
+            <a href="index.html" id="home-link" class="flex items-center gap-2 text-xl font-bold z-10 cursor-pointer group"> 
+                <img src="ALGO (1).png" alt="AlgoSensei Logo" class="h-20 -my-3 transition-transform group-hover:scale-110">
+            </a>
+            <nav class="hidden md:flex items-center gap-2 text-sm font-medium absolute left-1/2 -translate-x-1/2 bg-light-bg-secondary/50 dark:bg-dark-bg-secondary/50 backdrop-blur-md rounded-full border border-light-border/50 dark:border-dark-border/50 p-2 shadow-md">
+                <a href="about.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">About</a>
+                <a href="features.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Features</a>
+                <a href="contact.html" class="px-4 py-1 rounded-full text-dark-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Contact</a>
+            </nav>
+            <div class="flex items-center gap-2 z-10">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark-accent">
+                    <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="theme-icon-moon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button id="mobile-menu-btn" class="p-2 rounded-md md:hidden hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-dark-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Menu (Copied from index.html for consistency) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-light-bg-secondary/95 dark:bg-dark-bg/95 backdrop-blur-sm absolute top-[60px] left-0 right-0 z-20">
+            <nav class="flex flex-col items-center gap-4 p-4">
+                <a href="about.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">About</a>
+                <a href="features.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Features</a>
+                <a href="contact.html" class="px-4 py-2 rounded-full text-dark-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Contact</a>
+            </nav>
+        </div>
+
+        <main class="flex-grow px-4">
+            <!-- Main Title -->
+            <section class="text-center pt-16 pb-12 md:pt-24 md:pb-16 animate-fadeInUp bg-light-bg dark:bg-dark-bg">
+                <h1 class="text-4xl md:text-5xl font-bold text-light-text-primary dark:text-dark-text-primary">Get In <span class="text-light-accent dark:text-dark-accent">Touch</span></h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-light-text-secondary dark:text-dark-text-secondary">We'd love to hear from you. Whether you have a question, feedback, or a collaboration idea, our inbox is always open.</p>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="max-w-6xl mx-auto pb-16 md:pb-24 animate-fadeInUp" style="animation-delay: 100ms;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-light-bg-secondary dark:bg-dark-bg-secondary p-8 md:p-12 rounded-lg shadow-lg border border-light-border dark:border-dark-border/50">
+                    <!-- Left Column: Contact Info -->
+                    <div class="flex flex-col justify-center text-center md:text-left">
+                        <div class="bg-light-accent/10 dark:bg-dark-accent/10 inline-flex p-4 rounded-full border-2 border-light-border dark:border-dark-border mb-6 self-center md:self-start">
+                            <svg class="w-8 h-8 text-light-accent dark:text-dark-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 text-light-text-primary dark:text-dark-text-primary">Contact Information</h2>
+                        <p class="text-lg text-light-text-secondary dark:text-dark-text-secondary mb-6">
+                            For feedback, collaborations, or support, please don't hesitate to reach out.
+                        </p>
+                        <a href="mailto:contact@algosensei.dev" class="text-xl font-semibold text-light-accent dark:text-dark-accent hover:text-light-accent-hover dark:hover:text-dark-accent-hover transition-colors">
+                            contact@algosensei.dev
+                        </a>
+                    </div>
+
+                    <!-- Right Column: Contact Form -->
+                    <div>
+                        <form action="#" method="POST" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">Your Name</label>
+                                <input type="text" name="name" id="name" class="w-full p-3 bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">Your Email</label>
+                                <input type="email" name="email" id="email" class="w-full p-3 bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">Message</label>
+                                <textarea name="message" id="message" rows="5" class="w-full p-3 bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all resize-none" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full px-6 py-3 bg-light-accent dark:bg-dark-accent text-white font-bold rounded-lg shadow-lg shadow-light-accent/30 dark:shadow-dark-accent/30 hover:bg-light-accent-hover dark:hover:bg-dark-accent-hover hover:shadow-xl hover:shadow-dark-accent/40 transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-800">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer (Copied from index.html for consistency) -->
+        <footer id="footer" class="p-6 text-center border-t border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-center md:justify-between items-center gap-4">
+                    <div class="hidden md:block text-light-text-secondary dark:text-dark-text-secondary text-center md:text-left">
+                        <p class="font-semibold text-light-text-primary dark:text-dark-text-primary">AlgoSensei</p>
+                        <p class="text-sm">Your Personal AI Coding Sensei</p>
+                    </div>
+                    <div class="text-sm text-light-text-secondary dark:text-dark-text-secondary text-center md:text-right">
+                        <p>&copy; 2025 AlgoSensei. All Rights Reserved.</p>
+                        <p class="hidden md:block">Built with ❤️ for coders.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // This script is for the header functionality (theme toggle, mobile menu)
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('theme-icon-sun');
+            const moonIcon = document.getElementById('theme-icon-moon');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.querySelector('header');
+
+            // Set initial theme
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+
+            // Theme toggle handler
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                sunIcon.classList.toggle('hidden');
+                moonIcon.classList.toggle('hidden');
+            });
+
+            // Mobile menu handler
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.style.top = `${header.offsetHeight}px`;
+            });
+        });
+    </script>
+
+</body>
+</html>
