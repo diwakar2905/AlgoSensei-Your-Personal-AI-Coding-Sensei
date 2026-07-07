@@ -19,3 +19,4 @@ def get_settings() -> Settings:
         gemini_model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
         temperature=float(os.getenv("GEMINI_TEMPERATURE", "0.4")),
     )
+
