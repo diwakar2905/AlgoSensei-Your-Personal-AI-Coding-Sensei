@@ -1,4 +1,5 @@
-from pydantic import BaseModel, Field
+from typing import Any
+from pydantic import BaseModel, Field, model_validator
 
 
 class CodeInput(BaseModel):
@@ -43,6 +44,17 @@ class CodeReviewResponse(BaseModel):
     edge_cases: str
     optimization_suggestions: str
     interview_feedback: str
+
+    @model_validator(mode="before")
+    @classmethod
+    def format_lists_to_strings(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            for field in ["potential_bugs", "edge_cases", "optimization_suggestions"]:
+                val = data.get(field)
+                if isinstance(val, list):
+                    # Join with bullet points
+                    data[field] = "\n".join(f"- {item}" for item in val)
+        return data
 
 
 class InterviewStartInput(BaseModel):
@@ -90,3 +102,15 @@ class InterviewFinalResponse(BaseModel):
     strengths: list[str]
     weaknesses: list[str]
     next_steps: list[str]
+
+    @model_validator(mode="before")
+    @classmethod
+    def format_strings_to_lists(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            for field in ["strengths", "weaknesses", "next_steps"]:
+                val = data.get(field)
+                if isinstance(val, str):
+                    # Split lines or bullets, or wrap in a list
+                    items = [item.strip("- ").strip() for item in val.split("\n") if item.strip()]
+                    data[field] = items if items else [val]
+        return data
