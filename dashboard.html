@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSensei - Dashboard</title>
+    <link rel="icon" type="image/png" href="ALGO (2).png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="assets/app.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        .dark ::-webkit-scrollbar-track { background: #44475A; }
+        .dark ::-webkit-scrollbar-thumb { background: #6272a4; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #ff79c6; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0f172a',
+                            'bg-secondary': '#111c33',
+                            accent: '#22c55e',
+                            'accent-hover': '#4ade80',
+                            'text-primary': '#f8fafc',
+                            'text-secondary': '#cbd5e1',
+                            border: '#334155',
+                        },
+                        light: {
+                            bg: '#f8fafc',
+                            'bg-secondary': '#ffffff',
+                            accent: '#0f766e',
+                            'accent-hover': '#115e59',
+                            'text-primary': '#0f172a',
+                            'text-secondary': '#475569',
+                            border: '#d8e1ee',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text-primary dark:text-dark-text-primary transition-colors duration-300">
+    <div id="app" class="min-h-screen flex flex-col">
+        <header class="flex items-center justify-between px-3 py-0 border-b border-light-border dark:border-dark-border bg-light-bg-secondary/80 dark:bg-dark-bg/80 backdrop-blur-sm shadow-sm sticky top-0 z-30 w-full relative">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-bold z-10 cursor-pointer group">
+                <img src="ALGO (1).png" alt="AlgoSensei Logo" class="h-20 -my-3 transition-transform group-hover:scale-110">
+            </a>
+            <nav class="hidden md:flex items-center gap-2 text-sm font-medium absolute left-1/2 -translate-x-1/2 bg-light-bg-secondary/50 dark:bg-dark-bg-secondary/50 backdrop-blur-md rounded-full border border-light-border/50 dark:border-dark-border/50 p-2 shadow-md">
+                <a href="index.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-1 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Dashboard</a>
+            </nav>
+            <div class="flex items-center gap-2 z-10">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark-accent">
+                    <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    <svg id="theme-icon-moon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <button id="mobile-menu-btn" class="p-2 rounded-md md:hidden hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-dark-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-light-bg-secondary/95 dark:bg-dark-bg/95 backdrop-blur-sm absolute top-[60px] left-0 right-0 z-20">
+            <nav class="flex flex-col items-center gap-4 p-4">
+                <a href="index.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-2 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Dashboard</a>
+            </nav>
+        </div>
+
+        <main class="flex-grow px-4 py-10 md:py-16">
+            <section class="max-w-7xl mx-auto animate-fadeInUp">
+                <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 items-stretch">
+                    <div class="xl:col-span-2 space-y-6">
+                        <div>
+                            <p class="text-sm uppercase tracking-[0.3em] text-light-text-secondary dark:text-dark-text-secondary">Learning Analytics</p>
+                            <h1 class="mt-3 text-4xl md:text-5xl font-bold">Interview readiness, tracked locally.</h1>
+                            <p class="mt-4 text-light-text-secondary dark:text-dark-text-secondary max-w-xl">Your progress lives in localStorage, so you can measure practice volume, topic spread, weak areas, and confidence without adding authentication.</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Questions solved</p>
+                                <p id="stat-questions" class="mt-2 text-3xl font-bold">0</p>
+                            </div>
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Interviews completed</p>
+                                <p id="stat-interviews" class="mt-2 text-3xl font-bold">0</p>
+                            </div>
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Code reviews completed</p>
+                                <p id="stat-reviews" class="mt-2 text-3xl font-bold">0</p>
+                            </div>
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Interview readiness score</p>
+                                <p id="stat-readiness" class="mt-2 text-3xl font-bold">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xl:col-span-3 rounded-3xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary shadow-2xl p-6 md:p-8">
+                        <div class="flex items-end justify-between gap-4 flex-wrap">
+                            <div>
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Overall readiness</p>
+                                <h2 id="readiness-label" class="mt-2 text-2xl font-bold">Building momentum</h2>
+                            </div>
+                            <div class="w-28 h-28 rounded-full border-8 border-light-border dark:border-dark-border flex items-center justify-center">
+                                <div id="readiness-circle" class="text-2xl font-bold">0</div>
+                            </div>
+                        </div>
+                        <div class="mt-6 h-3 rounded-full bg-light-border dark:bg-dark-border overflow-hidden">
+                            <div id="readiness-bar" class="h-full rounded-full bg-light-accent dark:bg-dark-accent transition-all" style="width: 0%"></div>
+                        </div>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg p-5">
+                                <h3 class="font-semibold mb-3">Strong areas</h3>
+                                <div id="strong-areas" class="space-y-2 text-sm text-light-text-secondary dark:text-dark-text-secondary"></div>
+                            </div>
+                            <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg p-5">
+                                <h3 class="font-semibold mb-3">Weak areas</h3>
+                                <div id="weak-areas" class="space-y-2 text-sm text-light-text-secondary dark:text-dark-text-secondary"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 animate-fadeInUp" style="animation-delay: 150ms;">
+                <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                    <h2 class="text-lg font-semibold mb-4">Topics practiced</h2>
+                    <div id="topic-list" class="space-y-4"></div>
+                </div>
+                <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                    <h2 class="text-lg font-semibold mb-4">What this tells employers</h2>
+                    <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">This dashboard shows measurable learning signals: sustained practice, topic breadth, and interview performance. That makes AlgoSensei feel like a real AI engineering product instead of a toy demo.</p>
+                </div>
+                <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                    <h2 class="text-lg font-semibold mb-4">Next step</h2>
+                    <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">Run another code review or mock interview to keep the readiness score moving. Everything updates instantly in localStorage.</p>
+                    <div class="mt-4 flex gap-3 flex-wrap">
+                        <a href="code-review.html" class="px-4 py-2 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold">Code Review</a>
+                        <a href="interview.html" class="px-4 py-2 rounded-xl border border-light-border dark:border-dark-border font-semibold">Mock Interview</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="p-6 text-center border-t border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary">
+            <div class="max-w-6xl mx-auto text-sm text-light-text-secondary dark:text-dark-text-secondary">AlgoSensei - private learning analytics stored locally in your browser.</div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AlgoSensei.initThemeToggle();
+            AlgoSensei.initMobileMenu();
+
+            const model = AlgoSensei.getDashboardModel();
+            const analytics = model.analytics;
+
+            document.getElementById('stat-questions').textContent = analytics.questionsSolved;
+            document.getElementById('stat-interviews').textContent = analytics.interviewsCompleted;
+            document.getElementById('stat-reviews').textContent = analytics.codeReviewsCompleted;
+            document.getElementById('stat-readiness').textContent = model.readinessScore;
+            document.getElementById('readiness-circle').textContent = model.readinessScore;
+            document.getElementById('readiness-bar').style.width = `${model.readinessScore}%`;
+
+            const readinessLabel = document.getElementById('readiness-label');
+            if (model.readinessScore >= 80) {
+                readinessLabel.textContent = 'Interview-ready';
+            } else if (model.readinessScore >= 50) {
+                readinessLabel.textContent = 'Strong progress';
+            } else {
+                readinessLabel.textContent = 'Building momentum';
+            }
+
+            const strongAreas = document.getElementById('strong-areas');
+            strongAreas.innerHTML = model.strongAreas.length
+                ? model.strongAreas.map((item) => `<div class="flex items-center justify-between"><span>${item}</span><span>Strong</span></div>`).join('')
+                : '<p>No clear strong areas yet. Practice more topics to unlock them.</p>';
+
+            const weakAreas = document.getElementById('weak-areas');
+            weakAreas.innerHTML = model.weakAreas.length
+                ? model.weakAreas.map((item) => `<div class="flex items-center justify-between"><span>${item}</span><span>Needs work</span></div>`).join('')
+                : '<p>No obvious weak areas detected.</p>';
+
+            const topicList = document.getElementById('topic-list');
+            topicList.innerHTML = model.topics.map((topic) => `
+                <div>
+                    <div class="flex items-center justify-between text-sm mb-2">
+                        <span class="font-medium">${topic.label}</span>
+                        <span class="text-light-text-secondary dark:text-dark-text-secondary">${topic.value} sessions</span>
+                    </div>
+                    <div class="h-2 rounded-full bg-light-border dark:bg-dark-border overflow-hidden">
+                        <div class="h-full rounded-full bg-light-accent dark:bg-dark-accent" style="width: ${topic.progress}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

@@ -53,6 +53,7 @@
             animation: pulse-ring 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
         }
     </style>
+    <script src="assets/app.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -64,22 +65,22 @@
                     },
                     colors: {
                         dark: {
-                            bg: '#282a36',
-                            'bg-secondary': '#44475a',
-                            'accent': '#ff79c6',
-                            'accent-hover': '#ff92d4',
-                            'text-primary': '#f8f8f2',
-                            'text-secondary': '#bd93f9',
-                            'border': '#6272a4',
+                            bg: '#0b1020',
+                            'bg-secondary': '#121a31',
+                            'accent': '#60a5fa',
+                            'accent-hover': '#93c5fd',
+                            'text-primary': '#f8fafc',
+                            'text-secondary': '#cbd5e1',
+                            'border': '#23304f',
                         },
                         light: {
-                            bg: '#f8f9fa',
+                            bg: '#f6f9fc',
                             'bg-secondary': '#ffffff',
-                            'accent': '#ff79c6',
-                            'accent-hover': '#ff50b3',
-                            'text-primary': '#212529',
-                            'text-secondary': '#495057',
-                            'border': '#dee2e6',
+                            'accent': '#2563eb',
+                            'accent-hover': '#1d4ed8',
+                            'text-primary': '#0f172a',
+                            'text-secondary': '#475569',
+                            'border': '#d8e1ee',
                         }
                     }
                 }
@@ -108,9 +109,10 @@
                 <img src="ALGO (1).png" alt="AlgoSensei Logo" class="h-20 -my-3 transition-transform group-hover:scale-110">
             </a>
             <nav class="hidden md:flex items-center gap-2 text-sm font-medium absolute left-1/2 -translate-x-1/2 bg-light-bg-secondary/50 dark:bg-dark-bg-secondary/50 backdrop-blur-md rounded-full border border-light-border/50 dark:border-dark-border/50 p-2 shadow-md">
-                <a href="about.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">About</a>
-                <a href="features.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Features</a>
-                <a href="contact.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Contact</a>
+                <a href="index.html" class="px-4 py-1 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Dashboard</a>
             </nav>
             <div class="flex items-center gap-2 z-10">
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark-accent">
@@ -131,20 +133,73 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-light-bg-secondary/95 dark:bg-dark-bg/95 backdrop-blur-sm absolute top-[60px] left-0 right-0 z-20">
             <nav class="flex flex-col items-center gap-4 p-4">
-                <a href="about.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">About</a>
-                <a href="features.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Features</a>
-                <a href="contact.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Contact</a>
+                <a href="index.html" class="px-4 py-2 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Dashboard</a>
             </nav>
         </div>
 
         <!-- Input Screen -->
         <main id="input-screen" class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
             <div class="w-full max-w-7xl mx-auto">
-                <div class="text-center mb-8 animate-fadeInUp" style="animation-delay: 100ms;">
-                    <h2 class="text-3xl md:text-4xl font-bold">Your Personal AI Coding Sensei</h2>
-                    <p class="text-light-text-secondary dark:text-dark-text-secondary mt-2">for Competitive Programmers & Interview Prep</p>
+                <section class="relative overflow-hidden rounded-[2rem] border border-light-border dark:border-dark-border bg-gradient-to-br from-light-bg-secondary via-white to-blue-50 dark:from-dark-bg-secondary dark:via-dark-bg-secondary dark:to-slate-900 p-8 md:p-12 shadow-2xl animate-fadeInUp" style="animation-delay: 100ms;">
+                    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.18),transparent_35%)]"></div>
+                    <div class="relative grid grid-cols-1 xl:grid-cols-2 gap-10 items-center">
+                        <div>
+                            <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 px-4 py-2 text-sm font-medium text-blue-700 dark:text-blue-300">
+                                <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+                                AI-powered coding mentor, reviewer, and interview coach
+                            </div>
+                            <h2 class="mt-6 text-4xl md:text-6xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary">Build interview-ready engineering instincts.</h2>
+                            <p class="mt-5 max-w-2xl text-lg text-light-text-secondary dark:text-dark-text-secondary">AlgoSensei turns practice into measurable progress with Socratic tutoring, code review, mock interviews, and private learning analytics.</p>
+                            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                                <a href="#feature-grid" class="px-6 py-3 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold shadow-lg hover:scale-[1.02] transition-transform">Explore features</a>
+                                <a href="dashboard.html" class="px-6 py-3 rounded-xl border border-light-border dark:border-dark-border bg-white/80 dark:bg-dark-bg/80 font-semibold hover:bg-white dark:hover:bg-dark-bg transition-colors">Open dashboard</a>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="rounded-3xl border border-light-border dark:border-dark-border bg-white/80 dark:bg-dark-bg/80 p-5 shadow-lg">
+                                <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Interview readiness</p>
+                                <p class="mt-2 text-4xl font-bold">Adaptive</p>
+                                <p class="mt-2 text-sm text-light-text-secondary dark:text-dark-text-secondary">Track momentum across problems, reviews, and interviews without authentication.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="rounded-3xl border border-light-border dark:border-dark-border bg-white/80 dark:bg-dark-bg/80 p-5 shadow-lg">
+                                    <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Language support</p>
+                                    <p class="mt-2 text-2xl font-semibold">Python + more</p>
+                                </div>
+                                <div class="rounded-3xl border border-light-border dark:border-dark-border bg-white/80 dark:bg-dark-bg/80 p-5 shadow-lg">
+                                    <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Analytics</p>
+                                    <p class="mt-2 text-2xl font-semibold">Local first</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="feature-grid" class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fadeInUp" style="animation-delay: 180ms;">
+                    <div class="rounded-[1.75rem] border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-6 shadow-xl">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-2xl">1</div>
+                        <h3 class="mt-5 text-2xl font-bold">AI Coding Mentor</h3>
+                        <p class="mt-3 text-light-text-secondary dark:text-dark-text-secondary">Guided Socratic tutoring that helps users reason through their own solution instead of copying an answer.</p>
+                        <a href="index.html" class="mt-6 inline-flex px-4 py-2 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold">Start tutoring</a>
+                    </div>
+                    <div class="rounded-[1.75rem] border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-6 shadow-xl">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-2xl">2</div>
+                        <h3 class="mt-5 text-2xl font-bold">Code Review</h3>
+                        <p class="mt-3 text-light-text-secondary dark:text-dark-text-secondary">Paste a solution and get structured feedback on quality, complexity, bugs, edge cases, and interview readiness.</p>
+                        <a href="code-review.html" class="mt-6 inline-flex px-4 py-2 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold">Open review mode</a>
+                    </div>
+                    <div class="rounded-[1.75rem] border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-6 shadow-xl">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-2xl">3</div>
+                        <h3 class="mt-5 text-2xl font-bold">Mock Interview</h3>
+                        <p class="mt-3 text-light-text-secondary dark:text-dark-text-secondary">Practice DSA, DBMS, OOP, OS, and System Design with follow-ups, scoring, and final feedback.</p>
+                        <a href="interview.html" class="mt-6 inline-flex px-4 py-2 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold">Start interview</a>
+                    </div>
                 </div>
-                <div class="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-6 animate-fadeInUp" style="animation-delay: 200ms;">
+
+                <div class="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-6 animate-fadeInUp mt-10" style="animation-delay: 260ms;">
                     <div class="flex-1 flex flex-col">
                         <label for="problem-description" class="mb-2 font-semibold flex items-center gap-2">
                              <svg class="w-5 h-5 text-light-text-secondary dark:text-dark-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -171,7 +226,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button id="coach-me-btn" class="mt-8 px-8 py-3 bg-dark-accent text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-800 animate-fadeInUp" style="animation-delay: 300ms;">
+                    <button id="coach-me-btn" class="mt-8 px-8 py-3 bg-dark-accent text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 animate-fadeInUp" style="animation-delay: 320ms;">
                         Coach Me!
                     </button>
                 </div>
@@ -197,46 +252,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            AlgoSensei.initThemeToggle();
+            AlgoSensei.initMobileMenu();
+
             const engineLoader = document.getElementById('engine-loader');
             const mainContent = document.getElementById('input-screen');
             const coachMeBtn = document.getElementById('coach-me-btn');
             const problemDescription = document.getElementById('problem-description');
             const codeSolution = document.getElementById('code-solution');
             const languageSelect = document.getElementById('language-select');
-            
-            const themeToggle = document.getElementById('theme-toggle');
-            const sunIcon = document.getElementById('theme-icon-sun');
-            const moonIcon = document.getElementById('theme-icon-moon');
-            
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                moonIcon.classList.add('hidden');
-                sunIcon.classList.remove('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
-
-            themeToggle.addEventListener('click', () => {
-                const isDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                sunIcon.classList.toggle('hidden');
-                moonIcon.classList.toggle('hidden');
-            });
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
 
             coachMeBtn.addEventListener('click', () => {
                 // Save data to localStorage to pass to the next page
                 localStorage.setItem('problem', problemDescription.value);
                 localStorage.setItem('code', codeSolution.value);
                 localStorage.setItem('language', languageSelect.value);
+                AlgoSensei.recordQuestionSolved('mixed');
 
                 // Show animation and then redirect
                 mainContent.classList.add('animate-fadeOutDown');

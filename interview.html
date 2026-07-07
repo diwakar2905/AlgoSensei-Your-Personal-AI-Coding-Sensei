@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoSensei - Mock Interview</title>
+    <link rel="icon" type="image/png" href="ALGO (2).png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="assets/app.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+        ::-webkit-scrollbar { width: 8px; }
+        .dark ::-webkit-scrollbar-track { background: #44475A; }
+        .dark ::-webkit-scrollbar-thumb { background: #6272a4; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #ff79c6; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        @keyframes messageIn { from { opacity: 0; transform: translateY(10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .animate-message-in { animation: messageIn 0.3s ease-out forwards; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0f172a',
+                            'bg-secondary': '#111c33',
+                            accent: '#f59e0b',
+                            'accent-hover': '#fbbf24',
+                            'text-primary': '#f8fafc',
+                            'text-secondary': '#cbd5e1',
+                            border: '#334155',
+                        },
+                        light: {
+                            bg: '#f7fafc',
+                            'bg-secondary': '#ffffff',
+                            accent: '#b45309',
+                            'accent-hover': '#92400e',
+                            'text-primary': '#0f172a',
+                            'text-secondary': '#475569',
+                            border: '#d6e0ea',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text-primary dark:text-dark-text-primary transition-colors duration-300">
+    <div id="app" class="min-h-screen flex flex-col">
+        <header class="flex items-center justify-between px-3 py-0 border-b border-light-border dark:border-dark-border bg-light-bg-secondary/80 dark:bg-dark-bg/80 backdrop-blur-sm shadow-sm sticky top-0 z-30 w-full relative">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-bold z-10 cursor-pointer group">
+                <img src="ALGO (1).png" alt="AlgoSensei Logo" class="h-20 -my-3 transition-transform group-hover:scale-110">
+            </a>
+            <nav class="hidden md:flex items-center gap-2 text-sm font-medium absolute left-1/2 -translate-x-1/2 bg-light-bg-secondary/50 dark:bg-dark-bg-secondary/50 backdrop-blur-md rounded-full border border-light-border/50 dark:border-dark-border/50 p-2 shadow-md">
+                <a href="index.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-1 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-1 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Dashboard</a>
+            </nav>
+            <div class="flex items-center gap-2 z-10">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark-accent">
+                    <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                    <svg id="theme-icon-moon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                </button>
+                <button id="mobile-menu-btn" class="p-2 rounded-md md:hidden hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-dark-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-light-bg-secondary/95 dark:bg-dark-bg/95 backdrop-blur-sm absolute top-[60px] left-0 right-0 z-20">
+            <nav class="flex flex-col items-center gap-4 p-4">
+                <a href="index.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Mentor</a>
+                <a href="code-review.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Code Review</a>
+                <a href="interview.html" class="px-4 py-2 rounded-full text-light-text-primary bg-gray-200 dark:bg-gray-600 transition-all">Mock Interview</a>
+                <a href="dashboard.html" class="px-4 py-2 rounded-full text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">Dashboard</a>
+            </nav>
+        </div>
+
+        <main class="flex-grow px-4 py-10 md:py-16">
+            <section class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-5 gap-6">
+                <div class="xl:col-span-2 space-y-6 animate-fadeInUp">
+                    <div>
+                        <p class="text-sm uppercase tracking-[0.3em] text-light-text-secondary dark:text-dark-text-secondary">Mock Interview Mode</p>
+                        <h1 class="mt-3 text-4xl md:text-5xl font-bold">Practice like you're in the real loop.</h1>
+                        <p class="mt-4 text-light-text-secondary dark:text-dark-text-secondary max-w-xl">Pick a domain, answer questions live, get follow-ups, and finish with a score and interview-style feedback.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                            <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Domains</p>
+                            <p class="mt-2 text-lg font-semibold">DSA, DBMS, OOP, OS, System Design</p>
+                        </div>
+                        <div class="rounded-2xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary p-5 shadow-lg">
+                            <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">Flow</p>
+                            <p class="mt-2 text-lg font-semibold">Question, follow-up, evaluation, score</p>
+                        </div>
+                    </div>
+                    <a href="dashboard.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-light-accent dark:bg-dark-accent text-white font-semibold shadow-lg hover:scale-[1.02] transition-transform">Track readiness score</a>
+                </div>
+
+                <div class="xl:col-span-3 animate-fadeInUp" style="animation-delay: 100ms;">
+                    <div class="rounded-3xl border border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary shadow-2xl overflow-hidden flex flex-col h-[72vh]">
+                        <div class="p-5 border-b border-light-border dark:border-dark-border grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Domain</label>
+                                <select id="domain-select" class="w-full px-4 py-3 rounded-2xl border border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent">
+                                    <option value="dsa">DSA</option>
+                                    <option value="dbms">DBMS</option>
+                                    <option value="oop">OOP</option>
+                                    <option value="os">OS</option>
+                                    <option value="system_design">System Design</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Difficulty</label>
+                                <select id="difficulty-select" class="w-full px-4 py-3 rounded-2xl border border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent">
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate" selected>Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <button id="start-interview-btn" class="w-full px-5 py-3 rounded-2xl bg-dark-accent text-white font-bold shadow-lg hover:bg-dark-accent-hover transition-colors">Start Interview</button>
+                            </div>
+                        </div>
+
+                        <div id="interview-log" class="flex-grow overflow-y-auto p-4 space-y-4"></div>
+
+                        <div class="p-4 border-t border-light-border dark:border-dark-border bg-light-bg-secondary/80 dark:bg-dark-bg-secondary/80">
+                            <div class="flex items-center gap-3 bg-light-bg dark:bg-dark-bg rounded-2xl border border-light-border dark:border-dark-border p-2 focus-within:ring-2 focus-within:ring-light-accent dark:focus-within:ring-dark-accent">
+                                <input id="interview-input" type="text" placeholder="Type your answer..." class="w-full bg-transparent px-3 py-2 focus:outline-none">
+                                <button id="send-answer-btn" class="px-4 py-3 rounded-xl bg-dark-accent text-white font-semibold hover:bg-dark-accent-hover transition-colors">Send</button>
+                            </div>
+                            <div class="mt-3 flex items-center justify-between text-sm text-light-text-secondary dark:text-dark-text-secondary">
+                                <span id="interview-status">Waiting to begin.</span>
+                                <span id="interview-score">Score: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="p-6 text-center border-t border-light-border dark:border-dark-border bg-light-bg-secondary dark:bg-dark-bg-secondary">
+            <div class="max-w-6xl mx-auto text-sm text-light-text-secondary dark:text-dark-text-secondary">AlgoSensei - AI mock interviews with structured evaluation.</div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AlgoSensei.initThemeToggle();
+            AlgoSensei.initMobileMenu();
+
+            const BACKEND_URL = AlgoSensei.BACKEND_URL;
+            const domainSelect = document.getElementById('domain-select');
+            const difficultySelect = document.getElementById('difficulty-select');
+            const startBtn = document.getElementById('start-interview-btn');
+            const sendBtn = document.getElementById('send-answer-btn');
+            const input = document.getElementById('interview-input');
+            const log = document.getElementById('interview-log');
+            const status = document.getElementById('interview-status');
+            const scoreLabel = document.getElementById('interview-score');
+
+            let interviewHistory = [];
+            let roundNumber = 1;
+            let currentQuestion = '';
+            let started = false;
+
+            function addMessage(sender, text, tone = 'neutral') {
+                const wrapper = document.createElement('div');
+                const isAi = sender === 'ai';
+                wrapper.className = `flex ${isAi ? 'justify-start' : 'justify-end'} animate-message-in`;
+                wrapper.innerHTML = `
+                    <div class="max-w-[85%] rounded-2xl px-4 py-3 shadow-lg ${isAi ? 'bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text-primary dark:text-dark-text-primary' : 'bg-dark-accent text-white'}">
+                        <p class="text-sm leading-relaxed ${tone === 'muted' ? 'opacity-80' : ''}">${text}</p>
+                    </div>
+                `;
+                log.appendChild(wrapper);
+                log.scrollTop = log.scrollHeight;
+            }
+
+            async function startInterview() {
+                log.innerHTML = '';
+                interviewHistory = [];
+                roundNumber = 1;
+                started = true;
+                currentQuestion = '';
+                status.textContent = 'Starting interview...';
+                scoreLabel.textContent = 'Score: 0';
+                startBtn.disabled = true;
+
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/interview/start`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            domain: domainSelect.value,
+                            difficulty: difficultySelect.value,
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    currentQuestion = data.question;
+                    addMessage('ai', data.question);
+                    status.textContent = 'Answer the opening question.';
+                } catch (error) {
+                    status.textContent = `Interview could not start: ${error.message}`;
+                } finally {
+                    startBtn.disabled = false;
+                }
+            }
+
+            async function sendAnswer() {
+                const answer = input.value.trim();
+                if (!started || !answer) {
+                    return;
+                }
+
+                input.value = '';
+                addMessage('user', answer);
+                interviewHistory.push({ role: 'user', parts: [{ text: answer }] });
+                status.textContent = 'Evaluating your answer...';
+
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/interview/turn`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            domain: domainSelect.value,
+                            difficulty: difficultySelect.value,
+                            latest_answer: answer,
+                            history: interviewHistory,
+                            round_number: roundNumber,
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    interviewHistory.push({ role: 'assistant', parts: [{ text: `${data.evaluation}\n${data.follow_up}` }] });
+                    addMessage('ai', `<strong>Evaluation:</strong> ${data.evaluation}<br><br><strong>Follow-up:</strong> ${data.follow_up}`, 'muted');
+                    scoreLabel.textContent = `Score: ${data.score}`;
+                    roundNumber = data.round_number || roundNumber + 1;
+                    AlgoSensei.recordTopicPractice(domainSelect.value, 2);
+
+                    if (data.should_end || roundNumber >= 4) {
+                        await finalizeInterview();
+                    } else {
+                        status.textContent = 'Answer the follow-up question.';
+                    }
+                } catch (error) {
+                    status.textContent = `Turn failed: ${error.message}`;
+                }
+            }
+
+            async function finalizeInterview() {
+                try {
+                    const response = await fetch(`${BACKEND_URL}/api/interview/finalize`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            domain: domainSelect.value,
+                            difficulty: difficultySelect.value,
+                            history: interviewHistory,
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    addMessage('ai', `<strong>Final score:</strong> ${data.overall_score}<br><strong>Verdict:</strong> ${data.verdict}`, 'muted');
+                    addMessage('ai', `<strong>Strengths:</strong> ${data.strengths.join(', ')}<br><strong>Weaknesses:</strong> ${data.weaknesses.join(', ')}<br><strong>Next steps:</strong> ${data.next_steps.join(', ')}`, 'muted');
+                    status.textContent = 'Interview completed.';
+                    scoreLabel.textContent = `Score: ${data.overall_score}`;
+                    AlgoSensei.recordInterviewCompleted(domainSelect.value, data.overall_score);
+                    started = false;
+                } catch (error) {
+                    status.textContent = `Finalization failed: ${error.message}`;
+                }
+            }
+
+            startBtn.addEventListener('click', startInterview);
+            sendBtn.addEventListener('click', sendAnswer);
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    sendAnswer();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
