@@ -16,6 +16,15 @@
 
 ---
 
+## 🛠️ Technology Stack
+* **Backend**: FastAPI, Python, LangChain, Uvicorn
+* **LLM Integration**: Google Gemini 2.5 Flash (via LangChain-Google-GenAI)
+* **Frontend**: HTML5, Vanilla CSS3 (Tailwind CSS via CDN), JavaScript (ES6)
+* **API Architecture**: REST APIs (JSON Payloads)
+* **Hosting & DevOps**: Vercel (Frontend), Render (Backend)
+
+---
+
 ## 💡 What is AlgoSensei?
 
 Unlike standard AI coding assistants that simply write code for you, **AlgoSensei** teaches you how to think. It guides developers through structured technical interview preparation using Socratic mentoring, automated deep code reviews, conversational mock interviews, and locally-stored learning analytics.
@@ -27,18 +36,27 @@ Unlike standard AI coding assistants that simply write code for you, **AlgoSense
 ```mermaid
 flowchart TD
     A[⚡ Frontend: HTML5 / CSS3 / Vanilla JS] -->|Secured REST Requests| B[🐍 FastAPI Gateway]
-    B --> C[🧠 Socratic Mentor Router]
-    B --> D[🔍 Code Review Router]
-    B --> E[🤝 Mock Interview Router]
-    C --> F[🔗 LangChain Orchestration]
-    D --> F
-    E --> F
-    F --> G[🤖 Google Gemini API]
+    B --> C[🔌 Feature Routers: Mentor, Review, Interview]
+    C --> D[📝 Prompt Templates: Socratic, Review, Mock]
+    D --> E[⚙️ AI Orchestration Layer<br/>Conversation Flow, State & History]
+    E --> F[🤖 LLM Layer<br/>Google Gemini 2.5 Flash]
 ```
 
 ---
 
-## ✨ Product Capabilities
+## 🚀 Engineering Challenges
+
+While building AlgoSensei, I solved several core backend and AI engineering challenges:
+
+* **Designing Separate AI Workflows**: Created independent, modular pipelines for Socratic tutoring, deep code reviews, and interactive mock interviews under a unified router-service layout.
+* **Maintaining Conversational Context**: Designed context-passing schemas to preserve user history and previous turns across multiple REST interactions statelessly.
+* **Prompt Engineering for Reasoning**: Crafted custom instructions and output schemas that force the LLM to provide guided Socratic questions instead of handing over direct code solutions.
+* **Local-First Stateless Analytics**: Developed a local tracking engine saving readiness scores and topic weights directly in `localStorage`, eliminating database costs and auth friction.
+* **Modular Codebase Design**: Structured the FastAPI application to allow independent feature expansions (e.g. adding new endpoints or models) without breaking existing interfaces.
+
+---
+
+## ✨ Core AI Workflows
 
 ### 🧠 1. AI Coding Mentor (Socratic Tutoring)
 * Guiding, question-based tutoring that helps you optimize brute-force implementations without giving away direct answers.
@@ -53,6 +71,16 @@ flowchart TD
 
 ### 📊 4. Local-First Learning Analytics
 * Track your readiness score, topic spread, and mock history completely client-side in `localStorage`. Zero login screens or server databases required.
+
+---
+
+## 🔮 Future Roadmap
+
+* **[✓] Retrieval-Augmented Generation (RAG)**: Connect localized PDF document loaders for customized interview prep syllabi.
+* **[✓] Multi-Agent Learning Workflows**: Multiple agents roleplaying different interviewers (e.g., tough vs. friendly) in mock rounds.
+* **[✓] Personalized Learning Memory**: Keeping track of historically weak areas across browser sessions.
+* **[✓] GitHub Repository Analysis**: Direct imports of repositories to review entire codebases at once.
+* **[✓] Local LLM Support (Ollama)**: Offline mode using locally run models like Llama 3 or Mistral.
 
 ---
 
