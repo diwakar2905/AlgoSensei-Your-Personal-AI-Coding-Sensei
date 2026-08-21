@@ -16,7 +16,7 @@ def _fallback_response(problem: str) -> str:
 
 
 @router.post("/api/start_session", response_model=AIResponse)
-async def start_session(user_input: CodeInput):
+def start_session(user_input: CodeInput):
     try:
         message = run_text_prompt(
             build_socratic_start_prompt(),
@@ -33,7 +33,7 @@ async def start_session(user_input: CodeInput):
 
 
 @router.post("/api/chat", response_model=AIResponse)
-async def chat_session(chat_input: ChatInput):
+def chat_session(chat_input: ChatInput):
     try:
         message = run_text_prompt(
             build_socratic_continue_prompt(),

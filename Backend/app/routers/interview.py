@@ -20,7 +20,7 @@ router = APIRouter()
 
 
 @router.post("/api/interview/start", response_model=InterviewStartResponse)
-async def interview_start(payload: InterviewStartInput):
+def interview_start(payload: InterviewStartInput):
     evaluation_focus = domain_guidance(payload.domain)
     result = run_json_prompt(
         build_interview_start_prompt(),
@@ -39,7 +39,7 @@ async def interview_start(payload: InterviewStartInput):
 
 
 @router.post("/api/interview/turn", response_model=InterviewTurnResponse)
-async def interview_turn(payload: InterviewTurnInput):
+def interview_turn(payload: InterviewTurnInput):
     evaluation_focus = domain_guidance(payload.domain)
     result = run_json_prompt(
         build_interview_turn_prompt(),
@@ -62,7 +62,7 @@ async def interview_turn(payload: InterviewTurnInput):
 
 
 @router.post("/api/interview/finalize", response_model=InterviewFinalResponse)
-async def interview_finalize(payload: InterviewFinalInput):
+def interview_finalize(payload: InterviewFinalInput):
     evaluation_focus = domain_guidance(payload.domain)
     result = run_json_prompt(
         build_interview_final_prompt(),

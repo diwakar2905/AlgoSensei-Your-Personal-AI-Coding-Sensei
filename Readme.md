@@ -1,33 +1,39 @@
-# <p align="center"><img src="ALGO (1).png" alt="AlgoSensei Logo" height="120"></p>
+# AlgoSENSEI
 
-<p align="center">
-  <strong>Your Personal AI-Powered Coding Sensei & Technical Interview Coach</strong>
-</p>
+### **Your Personal AI Coding Sensei & Technical Interview Coach**
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=chainlink" alt="LangChain" />
-  <img src="https://img.shields.io/badge/Google%20Gemini-8E75C2?style=for-the-badge&logo=google" alt="Google Gemini" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel" alt="Vercel" />
-  <img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
-</p>
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](#)
+[![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=chainlink)](#)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75C2?style=for-the-badge&logo=google)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](#)
 
 ---
 
-## 🛠️ Technology Stack
-* **Backend**: FastAPI, Python, LangChain, Uvicorn
-* **LLM Integration**: Google Gemini 2.5 Flash (via LangChain-Google-GenAI)
-* **Frontend**: HTML5, Vanilla CSS3 (Tailwind CSS via CDN), JavaScript (ES6)
-* **API Architecture**: REST APIs (JSON Payloads)
-* **Hosting & DevOps**: Vercel (Frontend), Render (Backend)
+## 📋 One-Line Description
+A lightweight FastAPI and vanilla JS web application that provides interactive, Socratic coding mentorship, structured code reviews, conversational mock interviews, and client-side learning analytics.
 
 ---
 
-## 💡 What is AlgoSensei?
+## 💡 Problem Statement
+Standard AI coding assistants often encourage passive learning by handing over optimized code solutions directly. This prevents developers from developing active problem-solving intuition and deep reasoning, which are essential for passing modern technical interviews.
 
-Unlike standard AI coding assistants that simply write code for you, **AlgoSensei** teaches you how to think. It guides developers through structured technical interview preparation using Socratic mentoring, automated deep code reviews, conversational mock interviews, and locally-stored learning analytics.
+---
+
+## 🛠️ Solution
+AlgoSensei is a local-first, split-stack platform built to facilitate active interview preparation. Instead of writing code for you, the application uses tailored system instructions and output schemas to guide you through:
+1. **Socratic Coding Mentorship**: Prompt-guided tutoring that asks targeted questions to help you improve your own code.
+2. **Automated Code Reviews**: Detailed complexity, bug, and edge-case analysis.
+3. **Conversational Mock Interviews**: Scenario-based, multi-round technical interviews covering DSA, DBMS, OOP, OS, and System Design.
+4. **Local Analytics**: Immediate feedback and readiness scores computed and stored entirely inside your browser, eliminating database friction and costs.
+
+---
+
+## ⚙️ Tech Stack
+*   **Backend**: FastAPI (Python), LangChain (`langchain-core` and `langchain-google-genai`), Uvicorn, python-dotenv
+*   **Frontend**: HTML5, Tailwind CSS (via CDN), Vanilla JavaScript (ES6)
+*   **LLM Orchestration**: Google Gemini models (Primary: `gemini-1.5-flash`; Fallbacks: `gemini-2.5-flash`, `gemini-1.5-pro`)
+*   **Database & Storage**: None on the server; client-side browser `localStorage` for private persistence
 
 ---
 
@@ -35,149 +41,139 @@ Unlike standard AI coding assistants that simply write code for you, **AlgoSense
 
 ```mermaid
 flowchart TD
-    A[⚡ Frontend: HTML5 / CSS3 / Vanilla JS] -->|Secured REST Requests| B[🐍 FastAPI Gateway]
-    B --> C[🔌 Feature Routers: Mentor, Review, Interview]
-    C --> D[📝 Prompt Templates: Socratic, Review, Mock]
-    D --> E[⚙️ AI Orchestration Layer<br/>Conversation Flow, State & History]
-    E --> F[🤖 LLM Layer<br/>Google Gemini 2.5 Flash]
+    subgraph Client [Browser - Client Side]
+        UI[HTML / Tailwind / Vanilla JS]
+        LS[(Browser localStorage)]
+        UI <-->|Store Analytics & Session Context| LS
+    end
+
+    subgraph Backend [FastAPI Server - Stateless]
+        GW[FastAPI main.py]
+        R[Routers: Mentor, Review, Interview]
+        P[Prompt Templates]
+        S[Gemini Service Layer]
+
+        GW -->|Include| R
+        R -->|Build Prompt| P
+        R -->|Invoke Chain| S
+    end
+
+    subgraph External [External APIs]
+        G[Google Gemini API]
+    end
+
+    UI <-->|HTTP REST Requests| GW
+    S <-->|Synchronous API Calls| G
 ```
 
----
-
-## 🚀 Engineering Challenges
-
-While building AlgoSensei, I solved several core backend and AI engineering challenges:
-
-* **Designing Separate AI Workflows**: Created independent, modular pipelines for Socratic tutoring, deep code reviews, and interactive mock interviews under a unified router-service layout.
-* **Maintaining Conversational Context**: Designed context-passing schemas to preserve user history and previous turns across multiple REST interactions statelessly.
-* **Prompt Engineering for Reasoning**: Crafted custom instructions and output schemas that force the LLM to provide guided Socratic questions instead of handing over direct code solutions.
-* **Local-First Stateless Analytics**: Developed a local tracking engine saving readiness scores and topic weights directly in `localStorage`, eliminating database costs and auth friction.
-* **Modular Codebase Design**: Structured the FastAPI application to allow independent feature expansions (e.g. adding new endpoints or models) without breaking existing interfaces.
+### End-to-End Request/Data Flow
+1.  **Session Setup**: The user enters their problem statement, code, and language on `index.html`. This information is saved to the browser's `localStorage` and the client redirects to the coach page.
+2.  **Mentorship / Review / Interview Session**:
+    *   **Mentor**: The frontend reads local data and sends a request to `/api/start_session` or `/api/chat`. The backend constructs a Socratic prompt template and calls Gemini.
+    *   **Review**: The user pastes code into `code-review.html`. The backend parses the code structure, queries Gemini for structured Big-O and review insights, and returns a JSON payload.
+    *   **Interview**: The user selects a domain (e.g., OOP, System Design) in `interview.html`. The frontend starts the interview by calling `/api/interview/start`. Successive user answers are processed round-by-round through `/api/interview/turn`. When the round limits are reached, `/api/interview/finalize` generates a final scorecard.
+3.  **Local Analytics Update**: On every successful code review, solved question, or interview completion, the frontend JavaScript updates the practice frequencies and score metrics directly in `localStorage`. The dashboard (`dashboard.html`) dynamically aggregates these metrics client-side to calculate an overall "Interview Readiness Score."
 
 ---
 
-## ✨ Core AI Workflows
-
-### 🧠 1. AI Coding Mentor (Socratic Tutoring)
-* Guiding, question-based tutoring that helps you optimize brute-force implementations without giving away direct answers.
-* Interactive chat with syntax-highlighted code blocks.
-
-### 🔍 2. Automated Code Review
-* Deep analysis of code quality, time complexity ($O(N)$), space complexity, bugs, edge cases, and optimization suggestions.
-
-### 🤝 3. Mock Technical Interviews
-* Round-by-round conversational mock interviews covering **DSA, DBMS, OOP, OS, and System Design**.
-* Scores responses dynamically and outputs final scorecard metrics (strengths, weaknesses, next steps).
-
-### 📊 4. Local-First Learning Analytics
-* Track your readiness score, topic spread, and mock history completely client-side in `localStorage`. Zero login screens or server databases required.
-
----
-
-## 🔮 Future Roadmap
-
-* **[✓] Retrieval-Augmented Generation (RAG)**: Connect localized PDF document loaders for customized interview prep syllabi.
-* **[✓] Multi-Agent Learning Workflows**: Multiple agents roleplaying different interviewers (e.g., tough vs. friendly) in mock rounds.
-* **[✓] Personalized Learning Memory**: Keeping track of historically weak areas across browser sessions.
-* **[✓] GitHub Repository Analysis**: Direct imports of repositories to review entire codebases at once.
-* **[✓] Local LLM Support (Ollama)**: Offline mode using locally run models like Llama 3 or Mistral.
-
----
-
-## 📸 Platform Showcase
-
-### 🏠 Landing Page
-![Home](https://github.com/user-attachments/assets/fa0ee55d-ed62-4e85-97eb-d1925fb232fc)
-
-### 🧠 Socratic Mentoring
-![AI Mentor](https://github.com/user-attachments/assets/e22070d6-cbc3-4d81-88ae-fdb63f69f383)
-
-### 🔍 Code Review Insights
-![Code Review](https://github.com/user-attachments/assets/e54db17c-b614-4996-99f3-2b9c5249094a)
-
-### 🤝 Mock Interviews
-![Mock Interview](https://github.com/user-attachments/assets/38ce4b4c-e281-4fec-89a6-25bff0565a4c)
-
-### 📊 Readiness Analytics
-![Analytics Dashboard](https://github.com/user-attachments/assets/371caa44-63aa-4e4a-b8f3-129500934641)
-
----
-
-## 🛠️ Local Development
-
-### 🐍 Backend Service Setup
-1. Navigate to the Backend folder:
-   ```bash
-   cd Backend
-   ```
-2. Create and activate a Python virtual environment:
-   ```bash
-   python -m venv .venv
-   # Windows:
-   .\.venv\Scripts\activate
-   # macOS/Linux:
-   source .venv/bin/activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the development server with live reload:
-   ```bash
-   uvicorn main:app --reload --port 8000
-   ```
-
-### ⚡ Frontend Setup
-Serve the root directory using any static file server (such as Live Server in VS Code) and visit:
-* [http://localhost:3000](http://localhost:3000)
-
-> [!IMPORTANT]
-> Make sure to configure your API key locally in `Backend/python.env`.
-
----
-
-<details>
-<summary>📂 Click to view Codebase File Structure</summary>
-
+## 📂 Project Structure
 ```
 ├── Backend/
 │   ├── app/
-│   │   ├── core/           # Env config & settings loading
-│   │   ├── models/         # Pydantic schemas (Request/Response validators)
-│   │   ├── prompts/        # Prompt engineering markdown templates
+│   │   ├── core/           # Env settings configuration
+│   │   ├── models/         # Pydantic validation schemas
+│   │   ├── prompts/        # Chat prompt templates (Socratic, Review, Interview)
 │   │   ├── services/       # Core service layer (Gemini Client & Fallbacks)
-│   │   └── routers/        # Feature-based REST endpoints
-│   ├── main.py             # FastAPI App Entrypoint
-│   ├── check_models.py     # API Key Debugging tool
+│   │   └── routers/        # FastAPI feature routers
+│   ├── main.py             # FastAPI Application Gateway
+│   ├── check_models.py     # Connection validation script
+│   ├── python.env.example  # Template environment file
 │   └── requirements.txt    # Python dependencies
 ├── assets/
-│   └── app.js              # Theme toggle, local analytics, state management
-├── index.html              # Homepage
+│   └── app.js              # State, theme, and localStorage analytics
+├── index.html              # Homepage & Mentor entry
 ├── coach.html              # Tutor chat panel
 ├── code-review.html        # Review dashboard
-├── interview.html          # Interactive Mock Interviews
+├── interview.html          # Mock technical interviews
 └── dashboard.html          # Analytics page
 ```
-</details>
 
-<details>
-<summary>🔌 Click to view API Specification</summary>
+---
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/` | Backend health check |
-| `POST` | `/api/start_session` | Initial Socratic mentor prompt |
-| `POST` | `/api/chat` | Continue Socratic mentoring conversation |
-| `POST` | `/api/code_review` | Deep structured code analysis |
-| `POST` | `/api/interview/start` | Launch technical mock interview |
-| `POST` | `/api/interview/turn` | Submit interview response and get next question |
-| `POST` | `/api/interview/finalize` | Fetch overall mock scorecard |
-</details>
+## 🚀 Local Development
+
+### 🐍 Backend Service Setup
+1.  Navigate to the Backend folder:
+    ```bash
+    cd Backend
+    ```
+2.  Create and activate a Python virtual environment:
+    ```bash
+    python -m venv .venv
+    # Windows:
+    .\.venv\Scripts\activate
+    # macOS/Linux:
+    source .venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Copy the example env file and insert your API key:
+    ```bash
+    cp python.env.example python.env
+    ```
+5.  Run the development server:
+    ```bash
+    uvicorn main:app --reload --port 8000
+    ```
+
+### ⚡ Frontend Setup
+Serve the root directory using any static web server (such as Live Server in VS Code or `python -m http.server 3000` from the repository root) and visit:
+*   [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🔌 API Documentation
+
+| Method | Endpoint | Description | Request Payload | Response Fields |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/` | Backend health check | None | `{"message", "architecture"}` |
+| `POST` | `/api/start_session` | Initial Socratic mentor prompt | `CodeInput` | `{"from", "text"}` |
+| `POST` | `/api/chat` | Continue Socratic mentoring conversation | `ChatInput` | `{"from", "text"}` |
+| `POST` | `/api/code_review` | Deep structured code analysis | `CodeReviewInput` | `{"from", "code_quality_analysis", "time_complexity", "space_complexity", "potential_bugs", "edge_cases", "optimization_suggestions", "interview_feedback"}` |
+| `POST` | `/api/interview/start` | Launch technical mock interview | `InterviewStartInput` | `{"from", "question", "score", "round_number"}` |
+| `POST` | `/api/interview/turn` | Submit interview response and get next question | `InterviewTurnInput` | `{"from", "evaluation", "follow_up", "score", "round_number", "should_end"}` |
+| `POST` | `/api/interview/finalize`| Fetch overall mock scorecard | `InterviewFinalInput` | `{"from", "overall_score", "verdict", "strengths", "weaknesses", "next_steps"}` |
+
+---
+
+## 🧪 Testing and Debugging
+To verify that your Gemini API key is configured correctly and the backend can successfully connect to Google GenAI, run the validation script:
+```bash
+cd Backend
+python check_models.py
+```
 
 ---
 
 ## 🔒 Security & Deployment Notes
+*   **Permissive CORS**: The backend CORS middleware is configured to accept requests from all origins (`allow_origins=["*"]`). While convenient for local split-stack setups and demo deployments, this should be restricted to the specific frontend domain in production.
+*   **API Key Protection**: API keys are loaded using `python-dotenv` from the git-ignored `python.env` file. Do not commit keys to GitHub. Set `GOOGLE_API_KEY` directly in your hosting provider's environment settings (e.g., Render, Railway) for production.
+*   **Unauthenticated Access**: Endpoints are public and do not implement user authentication.
 
-* **API Key Safety**: The backend keeps `python.env` untracked in `.gitignore` to prevent API key leaks.
-* **Production Variables**: On Render/Railway, set `GOOGLE_API_KEY` directly inside the hosting platform environment variables instead of committing a file.
-* **CORS Settings**: The CORS middleware is set to safely accept requests from your Vercel client domain (`https://algosensei-frontend.vercel.app`) without credential conflicts.
+---
+
+## ⚠️ Limitations & Future Improvements
+
+### Limitations
+1.  **No Server-Side Persistence**: Users cannot access their history across devices because analytics and conversational states are stored client-side. Clearing browser cache resets all stats.
+2.  **Stateless API Design**: The backend maintains no conversational memory. The client must pass the entire chat history in every `/api/chat` and `/api/interview/turn` request.
+3.  **Synchronous API Calls**: Invocations to the Gemini API are executed synchronously using LangChain's blocking `invoke()` function. To prevent event loop starvation under high concurrency, backend route handlers are defined as standard synchronous `def` endpoints so they run in FastAPI's background worker thread pool.
+4.  **No Prompt Injection Defense**: Payloads are passed directly into prompt templates without custom input validation or safety guardrails.
+
+### Future Improvements
+*   **Retrieval-Augmented Generation (RAG)**: Connect localized PDF loaders and vector indexes to allow customized interview prep syllabi.
+*   **Multi-Agent Mock Interviews**: Spawn collaborative or adversarial agents (e.g. tough vs. friendly mock interviewers) using LangGraph.
+*   **Local LLM Integration**: Support offline mode running local models (e.g., Llama 3) via Ollama.
+*   **Repository-Wide Analysis**: Support code reviews for uploaded folders or linked GitHub repositories.

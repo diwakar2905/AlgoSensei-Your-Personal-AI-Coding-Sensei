@@ -8,7 +8,7 @@ router = APIRouter()
 
 
 @router.post("/api/code_review", response_model=CodeReviewResponse)
-async def code_review(payload: CodeReviewInput):
+def code_review(payload: CodeReviewInput):
     result = run_json_prompt(
         build_code_review_prompt(),
         {
